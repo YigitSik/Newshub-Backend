@@ -24,8 +24,8 @@ public class NewsService {
         this.restTemplate = restTemplate;
     }
 
-    public NewsAPI callAPI(String countryCode,String category) {
-        String url = buildURL(countryCode, category);
+    public NewsAPI callAPI(String countryCode) {
+        String url = buildURL(countryCode);
         System.out.println(url);
         NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
 
@@ -42,13 +42,30 @@ public class NewsService {
         return newsAPI;
     }
 
-    public String buildURL(String countryCode, String category) {
-        return this.url + "?country=" + countryCode+ "&category=" + category + "&apiKey=" + APIKey;
+    public NewsAPI callByCategory(String countryCode, String category) {
+        String url = buildURL(countryCode,category);
+        System.out.println(url);
+        NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
+
+        return newsAPI;
     }
 
-//    public String buildURL(String countryCode, String category) {
-//        return this.url + "?country=" + countryCode + "&category=" + category + "&apiKey=" + APIKey;
-//    }
+    public NewsAPI callByQuery(String countryCode, String query) {
+        String url = buildURL(countryCode,query);
+        System.out.println(url);
+        NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
+
+        return newsAPI;
+    }
+
+    public String buildURL(String countryCode) {
+        return this.url + "?country="+countryCode +"&apiKey="+ APIKey;
+    }
+
+    public String buildURL(String countryCode, String category) {
+        return this.url + "?country=" + countryCode + "&category=" + category + "&apiKey=" + APIKey;
+    }
+
 
 }
 
