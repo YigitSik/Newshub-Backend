@@ -1,13 +1,11 @@
-package edu.firat.habermerkezi.service;
+package edu.firat.newshub.service;
 
 
-import edu.firat.habermerkezi.model.newsapi.Article;
-import edu.firat.habermerkezi.model.newsapi.NewsAPI;
+import edu.firat.newshub.model.newsapi.NewsAPI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 
 
 @Service
@@ -16,6 +14,7 @@ public class NewsService {
     private final String APIKey;
     private final String url;
     private RestTemplate restTemplate;
+
 
     // calls the values from application.properties
     public NewsService(@Value("${APIKey}") String APIKey, @Value("${URL}") String url, RestTemplate restTemplate) {
@@ -50,16 +49,21 @@ public class NewsService {
         return newsAPI;
     }
 
-    public NewsAPI callByQuery(String countryCode, String query) {
-        String url = buildURL(countryCode,query);
+    public NewsAPI callByQuery( String countryCode,String query) {
+
+        String url = buildURLQuery(countryCode,query);
         System.out.println(url);
         NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
 
         return newsAPI;
     }
 
-    public String buildURL(String countryCode) {
-        return this.url + "?country="+countryCode +"&apiKey="+ APIKey;
+    public String buildURLQuery(String countryCode,String query) {
+        return this.url + "?country="+countryCode+"&q="+query +"&apiKey="+ APIKey;
+    }
+
+    public String buildURL(String country) {
+        return this.url + "?country="+country +"&apiKey="+ APIKey;
     }
 
     public String buildURL(String countryCode, String category) {

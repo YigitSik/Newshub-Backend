@@ -1,8 +1,8 @@
-package edu.firat.habermerkezi.controller;
+package edu.firat.newshub.controller;
 
 
-import edu.firat.habermerkezi.model.newsapi.NewsAPI;
-import edu.firat.habermerkezi.service.NewsService;
+import edu.firat.newshub.model.newsapi.NewsAPI;
+import edu.firat.newshub.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ public class NewsController {
     }
 
     @GetMapping("/query/{countryCode}/{query}")
-    public NewsAPI callByQuery(@PathVariable String countryCode,@PathVariable String query) {
+    public NewsAPI callByQuery(@PathVariable String countryCode, @PathVariable String query) {
         return newsService.callByQuery(countryCode,query);
     }
 

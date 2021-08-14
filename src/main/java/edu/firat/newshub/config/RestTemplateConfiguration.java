@@ -1,4 +1,4 @@
-package edu.firat.habermerkezi.config;
+package edu.firat.newshub.config;
 
 
 import org.springframework.context.annotation.Bean;

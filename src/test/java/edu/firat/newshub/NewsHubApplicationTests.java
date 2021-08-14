@@ -1,10 +1,10 @@
-package edu.firat.habermerkezi;
+package edu.firat.newshub;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HabermerkeziApplicationTests {
+class NewsHubApplicationTests {
 
 	@Test
 	void contextLoads() {
