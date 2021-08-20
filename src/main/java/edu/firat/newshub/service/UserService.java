@@ -7,12 +7,16 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+
 @Service
 public class UserService {
 
 
     @Autowired
     private UserRepository userRepository;
+
     private PasswordEncoder passwordEncoder;
 
     public UserService(@Lazy PasswordEncoder passwordEncoder) {
@@ -27,7 +31,12 @@ public class UserService {
         String rawPassword = user.getPassword();
         String encodedPassword = passwordEncoder.encode(rawPassword);
         user.setPassword(encodedPassword);
+        user.setRole("USER");
         return userRepository.save(user);
+    }
+
+    public List<User> getAllUserData(){
+        return userRepository.findAllByRoleEquals("USER");
     }
 
     public User updateUser(User user) {
@@ -46,5 +55,6 @@ public class UserService {
         }
         return response;
     }
+
 
 }

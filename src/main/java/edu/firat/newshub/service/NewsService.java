@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.MalformedURLException;
 
 
 @Service
@@ -23,7 +24,7 @@ public class NewsService {
         this.restTemplate = restTemplate;
     }
 
-    public NewsAPI callAPI(String countryCode) {
+    public NewsAPI callAPI(String countryCode)  {
         String url = buildURL(countryCode);
         System.out.println(url);
         NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
@@ -49,7 +50,7 @@ public class NewsService {
         return newsAPI;
     }
 
-    public NewsAPI callByQuery( String countryCode,String query) {
+    public NewsAPI callByQuery( String countryCode,String query)  {
 
         String url = buildURLQuery(countryCode,query);
         System.out.println(url);

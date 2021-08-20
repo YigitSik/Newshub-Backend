@@ -27,6 +27,7 @@ public class Favourites {
 
     private String url;
 
+    @Lob()
     private String urlToImage;
 
     private String publishedAt;

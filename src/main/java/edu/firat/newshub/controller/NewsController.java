@@ -6,9 +6,10 @@ import edu.firat.newshub.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @CrossOrigin(origins = "*")
 @RestController
-public class NewsController {
+public class NewsController{
 
     NewsService newsService;
 
@@ -16,17 +17,17 @@ public class NewsController {
     public void setNewsService(NewsService newsService) { this.newsService = newsService; }
 
     @GetMapping("/news/{countryCode}")
-    public NewsAPI callAPI(@PathVariable String countryCode) {
+    public NewsAPI callAPI(@PathVariable String countryCode)  {
         return newsService.callAPI(countryCode);
     }
 
     @GetMapping("/category/{countryCode}/{category}")
-    public NewsAPI callByCategory(@PathVariable String countryCode,@PathVariable String category) {
+    public NewsAPI callByCategory(@PathVariable String countryCode,@PathVariable String category)  {
         return newsService.callByCategory(countryCode,category);
     }
 
     @GetMapping("/query/{countryCode}/{query}")
-    public NewsAPI callByQuery(@PathVariable String countryCode, @PathVariable String query) {
+    public NewsAPI callByQuery(@PathVariable String countryCode, @PathVariable String query)  {
         return newsService.callByQuery(countryCode,query);
     }
 

@@ -2,6 +2,7 @@ package edu.firat.newshub.service;
 
 import edu.firat.newshub.model.Favourites;
 import edu.firat.newshub.model.User;
+import edu.firat.newshub.repository.FavRepository;
 import edu.firat.newshub.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,8 @@ public class FavService {
     @Autowired
     private UserRepository userRepo;
 
+    @Autowired
+    private FavRepository favRepo;
 
     public Favourites savefav(String username, Favourites f) {
         User user = userRepo.findByUsername(username);
@@ -36,11 +39,11 @@ public class FavService {
                 fav=favs;
                 articles.remove(fav);
                 user.setFavourites(articles);
+                favRepo.delete(favs);
                 userRepo.save(user);
                 break;
             }
         }
-
 
         return fav;
     }

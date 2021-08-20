@@ -37,7 +37,7 @@ public class FavController {
     }
 
 
-    @GetMapping("getAll")
+    @GetMapping("get/all")
     public ResponseEntity<?> getFavourites(@RequestHeader("Authorization") String authorizationHeader) {
         String username = getUsername(authorizationHeader);
         List<Favourites> articles = service.getAllFav(username);
