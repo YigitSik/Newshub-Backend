@@ -44,6 +44,7 @@ public class UserService {
     }
 
     public Boolean deleteUser(String username) {
+        System.out.println(username);
         User u = userRepository.findByUsername(username);
         Long userId = u.getUserId();
         Boolean response = Boolean.FALSE;

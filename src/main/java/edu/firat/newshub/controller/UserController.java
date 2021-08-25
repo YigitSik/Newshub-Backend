@@ -34,17 +34,16 @@ public class UserController {
 
 
     @PutMapping("/")
-    @PreAuthorize("hasRole('ADMIN')")
     public User updateUser(@RequestHeader("Authorization") String authorizationHeader, @RequestBody User user) {
         String username = getUsername(authorizationHeader);
         user.setUsername(username);
         return userService.updateUser(user);
     }
 
-    @DeleteMapping("/")
+    @PostMapping("/delete")
     @PreAuthorize("hasRole('ADMIN')")
-    public Boolean deleteUser(@RequestHeader("Authorization") String authorizationHeader) {
-        String username = getUsername(authorizationHeader);
+    public Boolean deleteUser(@RequestBody User user) {
+        String username = user.getUsername();
         return userService.deleteUser(username);
     }
 
