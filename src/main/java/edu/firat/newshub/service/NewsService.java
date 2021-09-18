@@ -29,6 +29,7 @@ public class NewsService {
         System.out.println(url);
         NewsAPI newsAPI = restTemplate.getForObject( url, NewsAPI.class);
 
+
 //        System.out.println(newsAPI.getArticles());
 //        ArrayList<Article> articles = newsAPI.getArticles();
 //        articles.forEach((element)->{
